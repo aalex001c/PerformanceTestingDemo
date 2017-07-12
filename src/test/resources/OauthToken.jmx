@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jmeterTestPlan version="1.2" properties="3.2" jmeter="3.2 r1790748">
+  <hashTree>
+    <TestPlan guiclass="TestPlanGui" testclass="TestPlan" testname="Test Plan" enabled="true">
+      <stringProp name="TestPlan.comments"></stringProp>
+      <boolProp name="TestPlan.functional_mode">false</boolProp>
+      <boolProp name="TestPlan.serialize_threadgroups">false</boolProp>
+      <elementProp name="TestPlan.user_defined_variables" elementType="Arguments" guiclass="ArgumentsPanel" testclass="Arguments" testname="User Defined Variables" enabled="true">
+        <collectionProp name="Arguments.arguments"/>
+      </elementProp>
+      <stringProp name="TestPlan.user_define_classpath"></stringProp>
+    </TestPlan>
+    <hashTree>
+      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="Thread Group" enabled="true">
+        <stringProp name="ThreadGroup.on_sample_error">continue</stringProp>
+        <elementProp name="ThreadGroup.main_controller" elementType="LoopController" guiclass="LoopControlPanel" testclass="LoopController" testname="Loop Controller" enabled="true">
+          <boolProp name="LoopController.continue_forever">false</boolProp>
+          <stringProp name="LoopController.loops">2</stringProp>
+        </elementProp>
+        <stringProp name="ThreadGroup.num_threads">2</stringProp>
+        <stringProp name="ThreadGroup.ramp_time">2</stringProp>
+        <longProp name="ThreadGroup.start_time">1499571840000</longProp>
+        <longProp name="ThreadGroup.end_time">1499571840000</longProp>
+        <boolProp name="ThreadGroup.scheduler">false</boolProp>
+        <stringProp name="ThreadGroup.duration"></stringProp>
+        <stringProp name="ThreadGroup.delay"></stringProp>
+      </ThreadGroup>
+      <hashTree>
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="HTTP Request" enabled="true">
+          <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+            <collectionProp name="Arguments.arguments">
+              <elementProp name="" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">client_id=rouser&amp;client_secret=weblogic&amp;grant_type=client_credentials&amp;scope=esp</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+              </elementProp>
+            </collectionProp>
+          </elementProp>
+          <stringProp name="HTTPSampler.domain">websec-stg.cable.comcast.com</stringProp>
+          <stringProp name="HTTPSampler.port"></stringProp>
+          <stringProp name="HTTPSampler.protocol">https</stringProp>
+          <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+          <stringProp name="HTTPSampler.path">/as/token.oauth2</stringProp>
+          <stringProp name="HTTPSampler.method">POST</stringProp>
+          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+          <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+          <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+          <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+          <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+          <stringProp name="HTTPSampler.response_timeout"></stringProp>
+        </HTTPSamplerProxy>
+        <hashTree>
+          <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="Response Assertion" enabled="true">
+            <collectionProp name="Asserion.test_strings">
+              <stringProp name="49586">200</stringProp>
+            </collectionProp>
+            <stringProp name="Assertion.test_field">Assertion.response_code</stringProp>
+            <boolProp name="Assertion.assume_success">false</boolProp>
+            <intProp name="Assertion.test_type">16</intProp>
+          </ResponseAssertion>
+          <hashTree/>
+          <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager" enabled="true">
+            <collectionProp name="HeaderManager.headers">
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name">Content-Type</stringProp>
+                <stringProp name="Header.value">application/x-www-form-urlencoded; charset=UTF-8</stringProp>
+              </elementProp>
+            </collectionProp>
+          </HeaderManager>
+          <hashTree/>
+        </hashTree>
+        <RegexExtractor guiclass="RegexExtractorGui" testclass="RegexExtractor" testname="Regular Expression Extractor" enabled="true">
+          <stringProp name="RegexExtractor.useHeaders">false</stringProp>
+          <stringProp name="RegexExtractor.refname">TokenName</stringProp>
+          <stringProp name="RegexExtractor.regex">{&quot;access_token&quot;:&quot;(.+?)&quot;</stringProp>
+          <stringProp name="RegexExtractor.template">$1$</stringProp>
+          <stringProp name="RegexExtractor.default">0</stringProp>
+          <stringProp name="RegexExtractor.match_number">0</stringProp>
+        </RegexExtractor>
+        <hashTree/>
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="HTTP Request" enabled="true">
+          <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+            <collectionProp name="Arguments.arguments">
+              <elementProp name="" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">{&#xd;
+    &quot;consent&quot; : {&#xd;
+        &quot;consentParameters&quot; : {&#xd;
+            &quot;ucid&quot; : &quot;1A5gZk4mLkAaNXNd7wpmvvOygq1NwQ2FE6d6u5Jv&quot;,&#xd;
+            &quot;uid&quot; : &quot;mAoRvI3IeNoW6JboTSSP&quot;,&#xd;
+            &quot;uui&quot; : &quot;63914010148118841313&quot;&#xd;
+        },&#xd;
+        &quot;consentStatus&quot; : {&#xd;
+            &quot;consentTime&quot; : &quot;28-FEB-17 12.55.59.404000000 PM EST&quot;,&#xd;
+            &quot;status&quot; : &quot;PENDING&quot;&#xd;
+        },&#xd;
+        &quot;consentText&quot; : &quot;You are agreeing to purchase OFFER:9973830474997 with a monthly cost of $199.99 which includes fees but not taxes&quot;,&#xd;
+        &quot;customerDetail&quot; : {&#xd;
+            &quot;accountNumber&quot; : &quot;3863290344342059&quot;,&#xd;
+            &quot;csgCustomerID&quot; : &quot;0098884652349&quot;,&#xd;
+            &quot;csgHouseKey&quot; : &quot;5916987555154&quot;,&#xd;
+            &quot;customerEmail&quot; : &quot;gHExHYGONr.JKUwe@comcast.com&quot;,&#xd;
+            &quot;customerName&quot; : {&#xd;
+                &quot;firstName&quot; : &quot;VdaYwwiyHg&quot;,&#xd;
+                &quot;lastName&quot; : &quot;hwhXmKYgMK&quot;,&#xd;
+                &quot;middleName&quot; : &quot;DfnDt&quot;,&#xd;
+                &quot;suffix&quot; : &quot;ZuW&quot;&#xd;
+            },&#xd;
+            &quot;isAccountHolder&quot; : true,&#xd;
+            &quot;orderDetail&quot; : {&#xd;
+                &quot;billingCodes&quot; : [&#xd;
+                    {&#xd;
+                        &quot;contractTermId&quot; : &quot;SP_I_PI_DCOM_Q412&quot;&#xd;
+                    },&#xd;
+                    {&#xd;
+                        &quot;contractTermId&quot; : &quot;TP_I_PI_DCOM_Q412_Gen&quot;&#xd;
+                    }&#xd;
+                ],&#xd;
+                &quot;isCommonFallout&quot; : false,&#xd;
+                &quot;isOrderSubmitted&quot; : false,&#xd;
+                &quot;orderId&quot; : &quot;3132191986336544&quot;,&#xd;
+                &quot;phoneNumber&quot; : &quot;0127366457&quot;,&#xd;
+                &quot;salesChannel&quot; : &quot;UgWIzVfBWE&quot;,&#xd;
+                &quot;shoppingCartHash&quot; : &quot;ReyDr69xNCTRNduwf6Ea7ezXP0VZoV&quot;,&#xd;
+                &quot;shoppingCartId&quot; : &quot;vxg2FuezO6PIASIUBPtdcpqxIBqi27&quot;&#xd;
+            },&#xd;
+            &quot;sessionID&quot; : &quot;j78ttZgjLXLPPS3FBJ2gySKfxlq5ZLuWOqlGKdEwHncbPdhEw3&quot;&#xd;
+        }&#xd;
+    },&#xd;
+    &quot;generateConsentToken&quot; : true&#xd;
+}</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+              </elementProp>
+            </collectionProp>
+          </elementProp>
+          <stringProp name="HTTPSampler.domain">consent-service-cassandra-stage.r2.app.cloud.comcast.net</stringProp>
+          <stringProp name="HTTPSampler.port"></stringProp>
+          <stringProp name="HTTPSampler.protocol">http</stringProp>
+          <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+          <stringProp name="HTTPSampler.path">/api/customer/v1/consent/consents/</stringProp>
+          <stringProp name="HTTPSampler.method">POST</stringProp>
+          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+          <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+          <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+          <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+          <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+          <stringProp name="HTTPSampler.response_timeout"></stringProp>
+        </HTTPSamplerProxy>
+        <hashTree>
+          <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager" enabled="true">
+            <collectionProp name="HeaderManager.headers">
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name">Content-Type</stringProp>
+                <stringProp name="Header.value">application/json</stringProp>
+              </elementProp>
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name">Authorization</stringProp>
+                <stringProp name="Header.value">Bearer ${TokenName}</stringProp>
+              </elementProp>
+            </collectionProp>
+          </HeaderManager>
+          <hashTree/>
+          <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="Response Assertion" enabled="true">
+            <collectionProp name="Asserion.test_strings">
+              <stringProp name="49586">200</stringProp>
+            </collectionProp>
+            <stringProp name="Assertion.test_field">Assertion.response_code</stringProp>
+            <boolProp name="Assertion.assume_success">false</boolProp>
+            <intProp name="Assertion.test_type">16</intProp>
+          </ResponseAssertion>
+          <hashTree/>
+        </hashTree>
+      </hashTree>
+    </hashTree>
+    <WorkBench guiclass="WorkBenchGui" testclass="WorkBench" testname="WorkBench" enabled="true">
+      <boolProp name="WorkBench.save">true</boolProp>
+    </WorkBench>
+    <hashTree/>
+  </hashTree>
+</jmeterTestPlan>
